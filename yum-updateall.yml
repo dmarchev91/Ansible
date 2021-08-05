@@ -1,0 +1,8 @@
+# yum-updateall.yml
+
+---
+  - hosts: webservers:loadbalancers
+    become: yes
+    tasks:
+      - name: Updating yum packages
+        yum: name='*' state=latest

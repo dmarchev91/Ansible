@@ -1,0 +1,9 @@
+#removefile.yml
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Remove file (delete file)
+        ansible.builtin.file:
+         path: /var/www/html/index.php
+         state: absent

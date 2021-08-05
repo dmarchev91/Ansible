@@ -1,0 +1,7 @@
+# apacheinstall.yum
+---
+  - hosts: loadbalancers
+    become: yes
+    tasks: 
+      - name: Install apache
+        yum: name=httpd state=latest

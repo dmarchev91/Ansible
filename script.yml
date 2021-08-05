@@ -1,0 +1,20 @@
+#script.yml
+#Copy script to destination machine --> Run script --> Return result --> Delete script
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Copy files to target machines
+        copy:
+          src: /etc/ansible/playbooks/script.sh
+          dest: /var/tmp/script.sh
+
+      - name: run script and return result
+        command: sh /var/tmp/script.sh
+        register: result
+      - debug: 
+         var: result.stdout         
+      - name: delete script after execution
+        file:
+         state: absent
+         path: /var/tmp/script.sh

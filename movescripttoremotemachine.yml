@@ -1,0 +1,12 @@
+#script.yml
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: Copy files to target machines
+        copy:
+          src: /etc/ansible/playbooks/script.sh
+          dest: /var/tmp/script.sh
+          register: result_copy
+      - name: Show result
+        debug: msg="{{ result_copy.stdout }}"
